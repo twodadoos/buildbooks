@@ -1,4 +1,4 @@
-# buildbooks
+# build-books
 
 This repository includes a collection of very modest **Build Books** meant to serve as guidance for installing specific applications, tools, or single-purpose enviroments. Each book offers reproducible steps, configuration options, and notes on direction; along with, quick checks and tests, coupled with expected outcomes, in hope of delivering a more efficient, successful deployment.
 
