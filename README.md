@@ -2,7 +2,7 @@
 
 This repository includes a collection of very modest **Build Books** meant to serve as guidance for installing specific applications, tools, or single-purpose enviroments. Each book offers reproducible steps, configuration options, and notes on direction; along with, quick checks and tests, coupled with expected outcomes, in hope of delivering a more efficient, successful deployment.
 
-Disclaimer
+**_Disclaimer_**
 
 These Build Books are provided for informational purposes only and reflect one possible approach based on specific assumptions, environments, and versions at a point in time. If anything documented here appears unclear, questionable, or unsuitable for your situation, stop and do not proceed. You are expected to apply your own professional judgment when determining whether you have the appropriate experience, resources, capacity, and safeguards to follow any instructions contained herein.
 
