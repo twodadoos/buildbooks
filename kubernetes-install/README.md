@@ -10,7 +10,7 @@
 * Linux host root access
 * Internet access
 
-### Assumptions
+### Assumptions and preamble
 
 While this approach is perfectly valid for cloud deployments (e.g. onto EC2 instances in AWS), it's also one that's been thoroughly tested and refined within a local libvirt environment; thus, it's assumed that's how you'll try it first, with the expecation it'll be easier to succeed again, elsewhere, sooner.
 
