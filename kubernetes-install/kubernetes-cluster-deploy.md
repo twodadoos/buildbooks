@@ -1,4 +1,4 @@
-# For each node - Control Plane and Worker
+# For both Control Plane and Worker nodes
 
 ## Pre-deployment
 
@@ -86,4 +86,4 @@ apt-mark hold kubelet kubeadm kubectl
 
 systemctl enable kubelet.service
 ```
-# For Control Plane node
+# For Control Plane
