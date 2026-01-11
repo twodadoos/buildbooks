@@ -1,4 +1,4 @@
-# For both Control Plane and Worker nodes
+# For Control Plane and Worker nodes
 
 ## Pre-deployment
 
@@ -24,18 +24,19 @@ sudo bash -c 'cat > /etc/sysctl.d/kubernetes.conf <<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
-EOF'
+EOF
 sysctl --quiet --system 2>/dev/null
+'
 ```
 4.  Install prerequisite applications
 ```
-apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
+sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
 ```
 5.  Configure Docker repository
 ```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
-
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo bash -c 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+'
 ```
 6.  Configure Kubernetes repository
 ```
