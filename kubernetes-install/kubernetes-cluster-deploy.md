@@ -15,8 +15,9 @@ sudo swapoff -a && sed -i '/[[:space:]]swap[[:space:]]/ s/^\(.*\)$/#\1/g' /etc/f
 sudo bash -c 'cat > /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
-EOF'
+EOF
 sudo modprobe overlay br_netfilter
+'
 ```
 
 ```
