@@ -57,27 +57,25 @@ apt update
 ## Deployment
 1.  Install and configure containerd
 ```
-apt update
-
+sudo bash -c '
 apt install -y containerd.io
-
 containerd config default > /etc/containerd/config.toml 2>&1
-
 sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
-
-systemctl restart containerd.service
-
 systemctl enable containerd.service
+systemctl restart containerd.service
+'
 ```
-
-3.  Install and configure kubernetes
+2.  Install and configure kubernetes
 ```
-apt update
-
 apt install -y kubelet kubeadm kubectl
+```
 
+```
 apt-mark hold kubelet kubeadm kubectl
+```
 
+```
 systemctl enable kubelet.service
 ```
+
 # For Control Plane
