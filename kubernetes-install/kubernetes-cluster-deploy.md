@@ -52,7 +52,7 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] ${K8S_REPO} /
 ```
 7.  Update apt packages
 ```
-apt update
+apt update -y
 ```
 ## Deployment
 1.  Install and configure containerd
@@ -88,4 +88,48 @@ apt-mark hold kubelet kubeadm kubectl
 systemctl enable kubelet.service
 ```
 
-# For Control Plane
+# For Control Plane node
+1.  Initialize control plane, for example:
+```
+sudo kubeadm init --control-plane-endpoint=controlNode.example.com
+```
+2.  Copy kubeconfig file to home directory
+```
+sudo bash -c '
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+'
+```
+3.  Install network plugin
+```
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
+```
+4.  Verify installation and status
+```
+kubectl cluster-info
+kubectl get nodes
+```
+
+# For Worker nodes
+1.  Join workers to control plane
+
+Example:
+```
+kubeadm join controlNode.example.com:6443 --token xtn3zi.bro5vmh1br5ut7sd \
+        --discovery-token-ca-cert-hash sha256:5d3243fc472921d4b958b4e167d3febdb9a26a8b0a8f2b36b7ee91a497967dfb
+```
+
+# Validate cluster
+1.  Ensure control plane is running
+```
+kubectl cluster-info
+```
+2.  All nodes should be ready
+```
+kubectl get nodes
+```
+3.  All pods in kube-system namespace should be ready 1/1 and running
+```
+kubectl get pods -n kube-system
+```
